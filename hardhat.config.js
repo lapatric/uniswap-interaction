@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle")
 require("@nomiclabs/hardhat-etherscan")
+require("@uniswap/v2-core")
+require("@uniswap/v2-periphery")
 require("hardhat-deploy")
 require("solidity-coverage")
 require("hardhat-gas-reporter")
