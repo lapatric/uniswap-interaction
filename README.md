@@ -7,9 +7,8 @@ Uniswap is a deceentralised crypto trading protocol. Instead of trading peer-to-
 
 ## Setting up environment
 
-After setting up a basic Hardhat environment we install the relevant Uniswap packages using `yarn`.
-Both packages installed must be added to the `hardhat.config.js` file as `require`s.
+After setting up a basic Hardhat environment we install the relevant Uniswap package using `yarn`. We also add it to the `hardhat.config.js` file as a `require`.
 
 ```bash
-yarn add --dev @uniswap/v2-core @uniswap/v2-periphery
+yarn add --dev @uniswap/sdk 
 ```
