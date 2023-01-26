@@ -1,0 +1,9 @@
+/node_modules
+/artifacts
+/cache
+.env
+coverage.json
+/coverage
+/deployments
+gas-report.txt
+constants/
