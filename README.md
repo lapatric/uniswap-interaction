@@ -7,8 +7,36 @@ Uniswap is a deceentralised crypto trading protocol. Instead of trading peer-to-
 
 ## Setting up environment
 
-After setting up a basic Hardhat environment we install the relevant Uniswap package using `yarn`. We also add it to the `hardhat.config.js` file as a `require`.
+After setting up a basic Hardhat environment we install the [Uniswap SDK](https://docs.uniswap.org/sdk/v2/guides/quick-start) package using `yarn`. The Uniswap SDK is used to help developers build on top of Uniswap. We also add it to the `hardhat.config.js` file as a `require`.
 
 ```bash
 yarn add --dev @uniswap/sdk 
 ```
+
+## Script 
+
+In the script we try out a few things. The script can be run with `hh run scripts/uniswap_interactions.js`
+
+- Fetching a pair using `Fetcher`: 
+    ```javascript
+    const { Fetcher, WETH } = require('@uniswap/sdk')
+    const dai = await Fetcher.fetchTokenData(chainId, tokenAddress);
+    const weth = WETH[chainId];
+    const pair = await Fetcher.fetchPairData(dai, weth); // order not important
+    ```
+
+- Creating a trading route with `Route`:
+    ```javascript
+    const { Route } = require('@uniswap/sdk')
+    const route = new Route([pair], weth) // specify pair(s) and input token
+    console.log(route.midPrice.toSignificant(6)); // returns DAI / WETH
+    console.log(route.midPrice.invert().toSignificant(6)); // returns WETH / ETH
+    ```
+
+- Swap long a route using `Trade`:
+    ```javascript
+    const { Trade, TokenAmount, TradeType } = require('@uniswap/sdk')
+    const trade = new Trade(route, new TokenAmount(weth, '100000000000000000'), TradeType.EXACT_INPUT);
+    console.log(trade.executionPrice.toSignificant(6)); // returns hypothetical execution price
+    console.log(trade.nextMidPrice.toSignificant(6)); // returns next mid price
+    ```
