@@ -40,3 +40,5 @@ In the script we try out a few things. The script can be run with `hh run script
     console.log(trade.executionPrice.toSignificant(6)); // returns hypothetical execution price
     console.log(trade.nextMidPrice.toSignificant(6)); // returns next mid price
     ```
+
+Refer to the files `scripts/uniswap_interaction.js` and `contracts/UniswapInteraction.js` for more information.
